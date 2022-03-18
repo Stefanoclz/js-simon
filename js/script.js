@@ -23,9 +23,19 @@ function simonNumberGenerator(min, max) {
 
 let simonArray = [];
 
+let userArray = [];
+
 const simonRandom = document.getElementById('simonRandom');
 
 simonNumberGenerator(1, 100);
 
 console.log(simonArray);
+
+setTimeout(() => {
+
+    for (let i = 0; i < 5; i++) {
+        let userNumber = parseInt(prompt(`Inserisci il numero alla posizione ${i + 1}`));
+    }
+
+}, 3000)
 
