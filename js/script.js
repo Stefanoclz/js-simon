@@ -21,7 +21,7 @@ function simonNumberGenerator(min, max) {
 
 }
 
-function userNumberGenerator(timerElapseNumber, timerPrompt) {
+function userGame(timerElapseNumber, timerPrompt) {
     setTimeout(() => {
         simonRandom.style.display = 'none';
         setTimeout(() => {
@@ -31,14 +31,17 @@ function userNumberGenerator(timerElapseNumber, timerPrompt) {
                 if (simonArray.includes(userNumber)) {
                     userArray.push(userNumber);
                     console.log('numeri indovinati: ' + userNumber);
+                    let points = userArray.length;
+                    score.innerText = `Il tuo punteggio: ${points}`;
                 } else {
+                    userArrayWrong.push(userNumber);
                     console.log('numeri sbagliati: ' + userNumber);
                 }
             }
-            userInput.innerText = userArray;
+            userInput.innerText = `I numeri indovinati sono: ${userArray}`;
+            userInputWrong.innerText = `I numeri sbagliati sono: ${userArrayWrong}`;
             return userArray;
         }, timerElapseNumber)
-
     }, timerPrompt)
 }
 /*
@@ -50,26 +53,19 @@ let simonArray = [];
 
 let userArray = [];
 
+let userArrayWrong = [];
+
 console.log(simonArray);
 
 const simonRandom = document.getElementById('simonRandom');
 
-const userInput = document.getElementById('userNumber');
+const userInput = document.getElementById('userNumberOk');
+
+const userInputWrong = document.getElementById('userNumberWrong');
+
+let score = document.getElementById('score');
 
 simonNumberGenerator(1, 100);
 
-userNumberGenerator(500, 3000);
-/*
-for (let i = 0; i < 5; i++) {
-    let insertNumber = userArray[i]
-    if (simonArray.includes(insertNumber)) {
-        console.log('indovinati: ' + insertNumber);
-    } else {
-        console.log('sbagliati: ' + insertNumber);
-    }
-    /* if (winnerNumber) {
-      console.log('indovinati: ' + winnerNumber);
-  } else {
-      console.log('sbagliati: ' + winnerNumber);
-  }
-} */
+userGame(500, 3000);
+
