@@ -28,6 +28,9 @@ function userGame(timerElapseNumber, timerPrompt) {
             for (let i = 0; i < simonArray.length; i++) {
                 simonRandom.style.display = 'block';
                 let userNumber = parseInt(prompt(`Inserisci il numero alla posizione ${i + 1}`));
+                while (isNaN(userNumber) || userNumber > 100) {
+                    userNumber = parseInt(prompt(`Inserisci il numero alla posizione ${i + 1}`));
+                }
                 if (simonArray.includes(userNumber)) {
                     userArray.push(userNumber);
                     console.log('numeri indovinati: ' + userNumber);
