@@ -21,21 +21,55 @@ function simonNumberGenerator(min, max) {
 
 }
 
+function userNumberGenerator(timerElapseNumber, timerPrompt) {
+    setTimeout(() => {
+        simonRandom.style.display = 'none';
+        setTimeout(() => {
+            for (let i = 0; i < 5; i++) {
+                simonRandom.style.display = 'block';
+                let userNumber = parseInt(prompt(`Inserisci il numero alla posizione ${i + 1}`));
+                if (simonArray.includes(userNumber)) {
+                    userArray.push(userNumber);
+                    console.log('numeri indovinati: ' + userNumber);
+                } else {
+                    console.log('numeri sbagliati: ' + userNumber);
+                }
+            }
+            userInput.innerText = userArray;
+            return userArray;
+        }, timerElapseNumber)
+
+    }, timerPrompt)
+}
+/*
+function arrayChecker() {
+    
+} */
+
 let simonArray = [];
 
 let userArray = [];
 
+console.log(simonArray);
+
 const simonRandom = document.getElementById('simonRandom');
+
+const userInput = document.getElementById('userNumber');
 
 simonNumberGenerator(1, 100);
 
-console.log(simonArray);
-
-setTimeout(() => {
-
-    for (let i = 0; i < 5; i++) {
-        let userNumber = parseInt(prompt(`Inserisci il numero alla posizione ${i + 1}`));
+userNumberGenerator(500, 3000);
+/*
+for (let i = 0; i < 5; i++) {
+    let insertNumber = userArray[i]
+    if (simonArray.includes(insertNumber)) {
+        console.log('indovinati: ' + insertNumber);
+    } else {
+        console.log('sbagliati: ' + insertNumber);
     }
-
-}, 3000)
-
+    /* if (winnerNumber) {
+      console.log('indovinati: ' + winnerNumber);
+  } else {
+      console.log('sbagliati: ' + winnerNumber);
+  }
+} */
