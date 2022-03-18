@@ -25,7 +25,7 @@ function userGame(timerElapseNumber, timerPrompt) {
     setTimeout(() => {
         simonRandom.style.display = 'none';
         setTimeout(() => {
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < simonArray.length; i++) {
                 simonRandom.style.display = 'block';
                 let userNumber = parseInt(prompt(`Inserisci il numero alla posizione ${i + 1}`));
                 if (simonArray.includes(userNumber)) {
@@ -44,10 +44,19 @@ function userGame(timerElapseNumber, timerPrompt) {
         }, timerElapseNumber)
     }, timerPrompt)
 }
-/*
-function arrayChecker() {
-    
-} */
+
+function startGame(min, max, timerElapseNumber, timerPrompt) {
+    simonNumberGenerator(min, max);
+    userGame(timerElapseNumber, timerPrompt);
+}
+
+function cleanerString(elem1, elem2, elem3, elem4) {
+    elem1.innerHTML = '';
+    elem2.innerHTML = '';
+    elem3.innerHTML = '';
+    elem4.innerHTML = '';
+}
+
 
 let simonArray = [];
 
@@ -55,7 +64,6 @@ let userArray = [];
 
 let userArrayWrong = [];
 
-console.log(simonArray);
 
 const simonRandom = document.getElementById('simonRandom');
 
@@ -65,7 +73,49 @@ const userInputWrong = document.getElementById('userNumberWrong');
 
 let score = document.getElementById('score');
 
-simonNumberGenerator(1, 100);
+const easyBtn = document.getElementById('easy');
 
-userGame(500, 3000);
+const mediumBtn = document.getElementById('medium');
+
+const hardBtn = document.getElementById('hard');
+
+const crazyBtn = document.getElementById('crazy');
+
+
+
+easyBtn.addEventListener('click', function () {
+    simonArray = [];
+    userArray = [];
+    userArrayWrong = [];
+    cleanerString(simonRandom, userInput, userInputWrong, score);
+    startGame(1, 100, 500, 30000);
+})
+
+
+mediumBtn.addEventListener('click', function () {
+    simonArray = [];
+    userArray = [];
+    userArrayWrong = [];
+    cleanerString(simonRandom, userInput, userInputWrong, score);
+    startGame(1, 100, 500, 10000);
+})
+
+
+hardBtn.addEventListener('click', function () {
+    simonArray = [];
+    userArray = [];
+    userArrayWrong = [];
+    cleanerString(simonRandom, userInput, userInputWrong, score);
+    startGame(1, 100, 500, 3000);
+})
+
+
+crazyBtn.addEventListener('click', function () {
+    simonArray = [];
+    userArray = [];
+    userArrayWrong = [];
+    cleanerString(simonRandom, userInput, userInputWrong, score);
+    startGame(1, 100, 500, 1000);
+})
+
 
